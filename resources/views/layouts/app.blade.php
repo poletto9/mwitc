@@ -7,16 +7,18 @@
 
     <link rel="icon" href="{{ url('images/favicon.ico') }}">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- Bootstrap 4.3.1 CSS -->
+    <link rel="stylesheet" href="{{ url('bootstrap/dist/css/bootstrap.min.css') }}">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>ระบบลงทะเบียนหลักสูตรฝึกอบรม สถาบันพัฒนาสุขภาวะเขตเมือง</title>
 
-    <!-- Styles -->
-    <link href="{{ url('css/app.css') }}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="{{ url('css/album.css') }}" rel="stylesheet">
+    <link href="{{ url('css/carousel.css') }}" rel="stylesheet">
+    <link href="{{ url('css/lity.css') }}" rel="stylesheet">
 
     <!-- Scripts -->
     <script>
@@ -25,73 +27,80 @@
         ]); ?>
     </script>
 </head>
-<body>
-    <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
-                <div class="navbar-header">
+<body class="bg-light" style="padding-top: 5.5rem;">
+    <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark shadow">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url('/') }}">
+                <img src="{{ url('images/MWI_White_LOGO.png') }}" height="30" class="d-inline-block align-top" alt="">
+                {{ config('app.name', 'Laravel') }}
+            </a>
+            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarmenu" aria-controls="navbarmenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
-                </div>
-
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
-                        @if (Auth::guest())
-                            <li><a href="{{ url('/login') }}">Login</a></li>
-                            <li><a href="{{ url('/register') }}">Register</a></li>
+            <div class="navbar-collapse collapse flex-grow-0" id="navbarmenu" style="">
+                <ul class="nav navbar-nav mr-auto">
+                    @if(Auth::guest())
+                        <li class="nav-item active">
+                            <a class="nav-link btn btn-dark" href="{{ url('/') }}">Login</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link btn btn-dark" href="{{ url('register') }}">Register</a>
+                        </li>
+                    @else
+                        @if(Auth::check() && Auth::user()->isAdmin())
+                            <li class="nav-item active">
+                                <a class="nav-link btn btn-dark" href="#">Management</a>
+                            </li>
                         @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="{{ url('/logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
-
-                                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
+                            <li class="nav-item active">
+                                <a class="nav-link btn btn-dark" href="#">Course</a>
                             </li>
                         @endif
-                    </ul>
-                </div>
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="https://example.com" id="dropdown_user" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }}</a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown_user">
+                            <a class="dropdown-item" href="#">แก้ไขข้อมูลส่วนตัว</a>
+                            <a class="dropdown-item" href="#">ตรวจสอบสถานะ</a>
+                            <a class="dropdown-item" href="{{ url('/logout') }}"
+                               onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                                ออกจากระบบ
+                            </a>
+                            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                        </div>
+                    </li>
+                    @endif
+                </ul>
+                {{--<form class="form-inline my-2 my-lg-0">--}}
+                {{--<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">--}}
+                {{--<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>--}}
+                {{--</form>--}}
             </div>
-        </nav>
+        </div>
+    </nav>
 
-        @yield('content')
-    </div>
+    @yield('content')
+
+    <footer class="text-muted text-center small">
+        <p class="mb-1">© 2019 สถาบันพัฒนาสุขภาวะเขตเมือง กรมอนามัย กระทรวงสาธารณสุข</p>
+        <p class="mb-1">เลขที่ 18 ถนนพหลโยธิน แขวงอนุสาวรีย์ เขตบางเขน กรุงเทพมหานคร 10220</p>
+        <p class="mb-1">โทร 02-521-6550-2, 02-521-6554 โทรสาร 02-521-0226, 02-986-1133</p>
+        <ul class="list-inline">
+            <li class="list-inline-item"><a href="#">Privacy</a></li>
+            <li class="list-inline-item"><a href="#">Terms</a></li>
+            <li class="list-inline-item"><a href="#">Support</a></li>
+        </ul>
+    </footer>
 
     <!-- Scripts -->
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    <script src="{{ url('js/app.js') }}"></script>
+    <script src="{{ url('jquery/dist/jquery.slim.min.js') }}"></script>
+    <script src="{{ url('jquery/dist/vendor/popper.min.js') }}"></script>
+    <script src="{{ url('bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <script src="{{ url('js/lity.js') }}"></script>
 </body>
 </html>
