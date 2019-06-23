@@ -42,19 +42,19 @@
                 <ul class="nav navbar-nav mr-auto">
                     @if(Auth::guest())
                         <li class="nav-item active">
-                            <a class="nav-link btn btn-dark" href="{{ url('/') }}">Login</a>
+                            <a class="nav-link btn btn-dark" href="{{ url('/') }}">ลงชื่อเข้าใช้</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link btn btn-dark" href="{{ url('register') }}">Register</a>
+                            <a class="nav-link btn btn-dark" href="{{ url('register') }}">สมัครสมาชิก</a>
                         </li>
                     @else
                         @if(Auth::check() && Auth::user()->isAdmin())
                             <li class="nav-item active">
-                                <a class="nav-link btn btn-dark" href="#">Management</a>
+                                <a class="nav-link btn btn-dark" href="{{ url('/') }}">จัดการข้อมูล</a>
                             </li>
                         @else
                             <li class="nav-item active">
-                                <a class="nav-link btn btn-dark" href="#">Course</a>
+                                <a class="nav-link btn btn-dark" href="{{ url('/') }}">หลักสูตร</a>
                             </li>
                         @endif
                     <li class="nav-item dropdown active">

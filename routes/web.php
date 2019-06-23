@@ -29,3 +29,9 @@ Route::group(['prefix' => 'admin'], function(){
         Route::get('/dashboard', 'admin\AdminController@index');
     });
 });
+
+//Back-end Controller
+Route::resource('backend/courses','backend\CoursesController');
+
+
+//Front-end Controller

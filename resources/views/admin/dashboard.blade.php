@@ -19,7 +19,7 @@
                                     <div class="card-title">ข้อมูลหลักสูตร</div>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
-                                            <a href="{{ url('back-end/course') }}" class="btn btn-sm btn-outline-success">จัดการข้อมูล »</a>
+                                            <a href="{{ url('backend/courses') }}" class="btn btn-sm btn-outline-success">จัดการข้อมูล »</a>
                                         </div>
                                     </div>
                                 </div>
@@ -28,10 +28,10 @@
                         <div class="col-md-4">
                             <div class="card mb-4 shadow-sm">
                                 <div class="card-body">
-                                    <div class="card-title">ข้อมูลหลักสูตร</div>
+                                    <div class="card-title">ข้อมูลผู้ใช้</div>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
-                                            <a href="{{ url('back-end/course') }}" class="btn btn-sm btn-outline-success">จัดการข้อมูล »</a>
+                                            <a href="{{ url('backend/course') }}" class="btn btn-sm btn-outline-success">จัดการข้อมูล »</a>
                                         </div>
                                     </div>
                                 </div>
@@ -40,10 +40,10 @@
                         <div class="col-md-4">
                             <div class="card mb-4 shadow-sm">
                                 <div class="card-body">
-                                    <div class="card-title">ข้อมูลหลักสูตร</div>
+                                    <div class="card-title">ข้อมูลลงทะเบียน</div>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
-                                            <a href="{{ url('back-end/course') }}" class="btn btn-sm btn-outline-success">จัดการข้อมูล »</a>
+                                            <a href="{{ url('backend/course') }}" class="btn btn-sm btn-outline-success">จัดการข้อมูล »</a>
                                         </div>
                                     </div>
                                 </div>
