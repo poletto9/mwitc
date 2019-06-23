@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Courses;
 use Illuminate\Http\Request;
-
+use App\Http\Controllers\Controller;
+Use Illuminate\Support\Facades\View;
 
 class HomeController extends Controller
 {
@@ -24,10 +26,14 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $courses = Courses::all();
+//        echo json_encode($courses);
+//        exit();
         if(auth()->user()->isAdmin()) {
-            return view('admin/dashboard');
+            return View::make('admin/dashboard');
         } else {
-            return view('home');
+            return View::make('home')
+                ->with('courses',$courses);
         }
     }
 
