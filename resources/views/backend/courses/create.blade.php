@@ -32,6 +32,22 @@
                             @endif
                         </div>
                     </div>
+                    <div class="form-group row {{ $errors->has('status') ? ' has-error' : '' }}">
+                        <label for="status" class="col-sm-2 col-form-label">สถานะ</label>
+                        <div class="col-md-10">
+                            <select class="form-control" id="status" name="status" required>
+                                <option selected="selected" disabled="disabled" hidden="hidden" value="">กรุณาเลือกสถานะ</option>
+                                <option value="0">ปิด</option>
+                                <option value="1">เปิด</option>
+                            </select>
+
+                            @if ($errors->has('status'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('status') }}</strong>
+                                    </span>
+                            @endif
+                        </div>
+                    </div>
                     <div class="form-group row">
                         <label for="submit" class="col-sm-2 col-form-label"></label>
                         <div class="col-sm-10">

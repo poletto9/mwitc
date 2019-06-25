@@ -4,7 +4,7 @@
 
     <div class="container">
             <div class="card" style="max-width: 500px; margin: auto">
-            <div class="card-header bg-dark text-white">ลงชื่อเข้าใช้</div>
+            <div class="card-header bg-dark text-white">Login</div>
             <div class="card-body">
                 <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
                     {{ csrf_field() }}

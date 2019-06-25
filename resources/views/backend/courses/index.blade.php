@@ -16,6 +16,7 @@
                             <th>รหัส</th>
                             <th>ชื่อหลักสูตร</th>
                             <th>วัตถุประสงค์</th>
+                            <th>สถานะ</th>
                             <th>แก้ไข</th>
                             <th>ลบ</th>
                         </tr>
@@ -24,6 +25,13 @@
                                 <td>{{ $course->id }}</td>
                                 <td>{{ $course->name }}</td>
                                 <td>{{ $course->desc }}</td>
+                                <td>
+                                    @if( $course->status == 0)
+                                        {{ 'ปิด' }}
+                                    @else
+                                        {{ 'เปิด' }}
+                                    @endif
+                                </td>
                                 <td>
                                     <a href="{{ url('backend/courses/'.$course->id.'/edit') }}" class="btn btn-warning">แก้ไข</a>
                                 </td>

@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\backend;
+namespace App\Http\Controllers;
 
 use App\Courses;
-use Illuminate\Support\Facades\Input;
+use App\Http\Controllers\Controller;
 Use Illuminate\Support\Facades\View;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
-class CoursesController extends Controller
+class EnrollController extends Controller
 {
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -23,15 +23,8 @@ class CoursesController extends Controller
     public function index()
     {
         //
-//        $courses = Courses::all();
-//        $courses = Courses::orderby('id','desc')->get();
-//        $count = Courses::count();
-
-        //Pagination ถ้าแบ่งหน้าไม่ต้อง query ALL
-        //$courses = Courses::simplePaginate(5);
-        $courses = Courses::Paginate(5);
-
-        return View::make('backend/courses/index')
+        $courses = Courses::all();
+        return View::make('site/enroll/index')
             ->with('courses',$courses);
     }
 
@@ -43,7 +36,6 @@ class CoursesController extends Controller
     public function create()
     {
         //
-        return View::make('backend/courses/create');
     }
 
     /**
@@ -55,12 +47,6 @@ class CoursesController extends Controller
     public function store(Request $request)
     {
         //
-        $course = new Courses();
-        $course->name = Input::get('course_name');
-        $course->desc = Input::get('description');
-        $course->status = Input::get('status');
-        $course->save();
-        return redirect()->action('backend\CoursesController@index');
     }
 
     /**
@@ -83,9 +69,6 @@ class CoursesController extends Controller
     public function edit($id)
     {
         //
-        $course = Courses::findOrFail($id);
-        return View::make('backend/courses/edit')
-            ->with('course',$course);
     }
 
     /**
@@ -98,12 +81,6 @@ class CoursesController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $course = Courses::find($id);
-        $course->name = Input::get('course_name');
-        $course->desc = Input::get('description');
-        $course->status = Input::get('status');
-        $course->save();
-        return redirect()->action('backend\CoursesController@index');
     }
 
     /**
@@ -115,8 +92,5 @@ class CoursesController extends Controller
     public function destroy($id)
     {
         //
-        $course = Courses::find($id);
-        $course->delete();
-        return redirect()->action('backend\CoursesController@index');
     }
 }

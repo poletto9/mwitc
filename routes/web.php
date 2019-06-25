@@ -35,3 +35,4 @@ Route::resource('backend/courses','backend\CoursesController');
 
 
 //Front-end Controller
+Route::resource('courses/enroll','EnrollController');

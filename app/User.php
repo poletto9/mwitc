@@ -15,6 +15,10 @@ class User extends Authenticatable
         return $this->type === self::ADMIN_TYPE;
     }
 
+    public function enroll(){
+        return $this->hasMany(Enroll::class); //กำหนด One to many relation ไปยังตาราง Enroll
+    }
+
     /**
      * The attributes that are mass assignable.
      *

@@ -37,7 +37,7 @@
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
                                             <a href="javascript:void(0)" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#box{{ $course->id  }}">รายละเอียดเพิ่มเติม »</a>
-                                            <a href="{{ url('course/register') }}" class="btn btn-sm btn-outline-success @if ( ($course->id != 1) and ($course->id != 6) and ($course->id != 7)) disabled @endif">สมัครอบรม »</a>
+                                            <a href="{{ url('courses/enroll') }}" class="btn btn-sm btn-outline-success @if ( ($course->status != 1) ) disabled @endif">สมัครอบรม »</a>
                                         </div>
                                     </div>
                                 </div>
@@ -55,7 +55,7 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        @if( ($course->id != 1) and ($course->id != 6) and ($course->id != 7))
+                                        @if( ($course->status != 1))
                                             <p class="card-text"><b>หลักสูตรนี้ยังไม่เปิดให้ลงทะเบียน</b></p>
                                         @else
                                             <p class="card-text"><b>วัตถุประสงค์</b><br>{{ $course->desc }}</p>
@@ -63,7 +63,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <a href="javascript:void (0)" class="btn btn-secondary" data-dismiss="modal">ปิด</a>
-                                        <a href="{{ url('course/register') }}" class="btn btn-success @if ( ($course->id != 1) and ($course->id != 6) and ($course->id != 7)) disabled @endif">สมัครอบรม</a>
+                                        <a href="{{ url('courses/enroll') }}" class="btn btn-success @if ( ($course->status != 1) ) disabled @endif">สมัครอบรม</a>
                                     </div>
                                 </div>
                             </div>
@@ -73,17 +73,4 @@
             </div>
         </div>
     </main>
-{{--<div class="container">--}}
-    {{--<div class="row">--}}
-        {{--<div class="col-md-8 col-md-offset-2">--}}
-            {{--<div class="panel panel-default">--}}
-                {{--<div class="panel-heading">Dashboard</div>--}}
-
-                {{--<div class="panel-body">--}}
-                    {{--You are logged in!--}}
-                {{--</div>--}}
-            {{--</div>--}}
-        {{--</div>--}}
-    {{--</div>--}}
-{{--</div>--}}
 @endsection
