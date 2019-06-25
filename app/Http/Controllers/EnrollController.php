@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Courses;
+use App\Enroll;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Input;
 Use Illuminate\Support\Facades\View;
 use Illuminate\Http\Request;
 
@@ -47,6 +49,17 @@ class EnrollController extends Controller
     public function store(Request $request)
     {
         //
+        $enroll = New Enroll();
+        $enroll->course_id = Input::get('course_id');
+        $enroll->user_id = Input::get('user_id');
+        $enroll->name = Input::get('name');
+        $enroll->company = Input::get('company');
+        $enroll->address = Input::get('address');
+        $enroll->postcode = Input::get('postcode');
+        $enroll->telephone = Input::get('telephone');
+        $enroll->email = Input::get('email');
+        $enroll->save();
+        return redirect()->action('/');
     }
 
     /**
