@@ -8,9 +8,10 @@ class Courses extends Model
 {
     //
     protected $table = 'courses';
-    protected $fillable = ['name','desc']; //กำหนดให้สามารถเพิ่มอมูลได้ในคำสั่งเดียว Mass Assignment
+    protected $fillable = ['name','desc','amount','cost']; //กำหนดให้สามารถเพิ่มอมูลได้ในคำสั่งเดียว Mass Assignment
 
-    public function enroll(){
-        return $this->hasMany(Enroll::class); //กำหนด One to many relation ไปยังตาราง Enroll
+    public function Batches(){
+        return $this->hasMany(Batches::class);
     }
+
 }

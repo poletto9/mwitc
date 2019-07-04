@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCoursesTable extends Migration
+class CreateEnrollDetailTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,13 +14,14 @@ class CreateCoursesTable extends Migration
     public function up()
     {
         //
-        Schema::create('courses',function (Blueprint $table){
-            $table->increments('id');
+        Schema::create('enroll_detail',function (Blueprint $table){
+            $table->increments('reg_id');
+            $table->integer('enroll_id')->unsigned();
+            $table->foreign('enroll_id')->references('enroll_id')->on('enroll');
             $table->string('name');
-            $table->text('desc')->lenght(0);
-            $table->integer('amount'); //จำนวนรุ่นที่เปิด
-            $table->integer('cost'); //ราคา
-            $table->integer('status')->default(0);
+            $table->string('position');
+            $table->string('food');
+            $table->string('telephone');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });
@@ -34,6 +35,6 @@ class CreateCoursesTable extends Migration
     public function down()
     {
         //
-        Schema::dropIfExists('courses');
+        Schema::dropIfExists('enroll_detail');
     }
 }

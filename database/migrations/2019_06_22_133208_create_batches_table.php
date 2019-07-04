@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCoursesTable extends Migration
+class CreateBatchesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,13 +14,14 @@ class CreateCoursesTable extends Migration
     public function up()
     {
         //
-        Schema::create('courses',function (Blueprint $table){
-            $table->increments('id');
-            $table->string('name');
-            $table->text('desc')->lenght(0);
-            $table->integer('amount'); //จำนวนรุ่นที่เปิด
-            $table->integer('cost'); //ราคา
-            $table->integer('status')->default(0);
+        Schema::create('batches',function (Blueprint $table){
+            $table->increments('batch_id');
+            $table->integer('course_id')->unsigned();
+            $table->foreign('course_id')->references('id')->on('courses');
+            $table->string('batch_name');
+            $table->date('deadline');
+            $table->date('training_date');
+            $table->string('place');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });
@@ -34,6 +35,6 @@ class CreateCoursesTable extends Migration
     public function down()
     {
         //
-        Schema::dropIfExists('courses');
+        Schema::dropIfExists('batches');
     }
 }

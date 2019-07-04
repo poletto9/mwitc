@@ -9,6 +9,7 @@
 
     <!-- Bootstrap 4.3.1 CSS -->
     <link rel="stylesheet" href="{{ url('bootstrap/dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -19,6 +20,7 @@
     <link href="{{ url('css/album.css') }}" rel="stylesheet">
     <link href="{{ url('css/carousel.css') }}" rel="stylesheet">
     <link href="{{ url('css/lity.css') }}" rel="stylesheet">
+    <link href="{{ url('css/paginate.css') }}" rel="stylesheet">
 
     <!-- Scripts -->
     <script>
@@ -58,7 +60,7 @@
                             </li>
                         @endif
                     <li class="nav-item dropdown active">
-                        <a class="nav-link dropdown-toggle" href="https://example.com" id="dropdown_user" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }}</a>
+                        <a class="nav-link dropdown-toggle" href="https://example.com" id="dropdown_user" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->display_name }}</a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown_user">
                             <a class="dropdown-item" href="#">แก้ไขข้อมูลส่วนตัว</a>
                             <a class="dropdown-item" href="#">ตรวจสอบสถานะ</a>

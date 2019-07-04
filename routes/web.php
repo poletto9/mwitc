@@ -32,6 +32,7 @@ Route::group(['prefix' => 'admin'], function(){
 
 //Back-end Controller
 Route::resource('backend/courses','backend\CoursesController');
+Route::resource('backend/batches','backend\BatchesController');
 
 
 //Front-end Controller

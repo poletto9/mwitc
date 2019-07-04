@@ -15,7 +15,7 @@ class User extends Authenticatable
         return $this->type === self::ADMIN_TYPE;
     }
 
-    public function enroll(){
+    public function Enroll(){
         return $this->hasMany(Enroll::class); //กำหนด One to many relation ไปยังตาราง Enroll
     }
 
@@ -25,7 +25,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'telephone',
+        'name','display_name','email','password','company','address','province','postcode','telephone'
     ];
 
     /**

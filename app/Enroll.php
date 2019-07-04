@@ -8,13 +8,17 @@ class Enroll extends Model
 {
     //
     protected $table = 'enroll';
-    protected $fillable = ['course_id','user_id','name','company','address','postcode','telephone','email']; //กำหนดให้สามารถเพิ่มอมูลได้ในคำสั่งเดียว Mass Assignment
+    protected $fillable = ['course_id','user_id']; //กำหนดให้สามารถเพิ่มอมูลได้ในคำสั่งเดียว Mass Assignment
 
-    public function courses(){
-        return $this->belongsTo(courses::class,'course_id'); //กำหนด FK ให้ตาราง Enroll
+    public function Batches(){
+        return $this->belongsTo(Batches::class,'batch_id'); //กำหนด FK ให้ตาราง Enroll
     }
 
-    public function user(){
-        return $this->belongsTo(user::class,'user_id'); //กำหนด FK ให้ตาราง Enroll
+    public function User(){
+        return $this->belongsTo(User::class,'user_id'); //กำหนด FK ให้ตาราง Enroll
+    }
+
+    public function EnrollDetail(){
+        return $this->hasMany(EnrollDetail::class); //กำหนด One to Many relation ไปยังตาราง EnrollDetail
     }
 }

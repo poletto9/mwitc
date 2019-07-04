@@ -29,7 +29,7 @@ class CoursesController extends Controller
 
         //Pagination ถ้าแบ่งหน้าไม่ต้อง query ALL
         //$courses = Courses::simplePaginate(5);
-        $courses = Courses::Paginate(5);
+        $courses = Courses::paginate(3);
 
         return View::make('backend/courses/index')
             ->with('courses',$courses);
@@ -58,6 +58,8 @@ class CoursesController extends Controller
         $course = new Courses();
         $course->name = Input::get('course_name');
         $course->desc = Input::get('description');
+        $course->amount = Input::get('amount');
+        $course->cost = Input::get('cost');
         $course->status = Input::get('status');
         $course->save();
         return redirect()->action('backend\CoursesController@index');
