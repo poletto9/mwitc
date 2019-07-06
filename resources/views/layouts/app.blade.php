@@ -52,7 +52,10 @@
                     @else
                         @if(Auth::check() && Auth::user()->isAdmin())
                             <li class="nav-item active">
-                                <a class="nav-link btn btn-dark" href="{{ url('/') }}">จัดการข้อมูล</a>
+                                <a class="nav-link btn btn-dark" href="{{ url('/') }}">ระบบจัดการข้อมูล</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link btn btn-dark" href="{{ url('/report') }}">ระบบรายงาน</a>
                             </li>
                         @else
                             <li class="nav-item active">
