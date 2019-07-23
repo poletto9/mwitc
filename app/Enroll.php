@@ -8,7 +8,7 @@ class Enroll extends Model
 {
     //
     protected $table = 'enroll';
-    protected $fillable = ['course_id','user_id']; //กำหนดให้สามารถเพิ่มอมูลได้ในคำสั่งเดียว Mass Assignment
+    protected $fillable = ['batch_id','user_id']; //กำหนดให้สามารถเพิ่มอมูลได้ในคำสั่งเดียว Mass Assignment
 
     public function Batches(){
         return $this->belongsTo(Batches::class,'batch_id'); //กำหนด FK ให้ตาราง Enroll

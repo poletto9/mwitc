@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Courses;
 use App\Enroll;
-use App\Http\Controllers\Controller;
+use App\EnrollDetail;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 Use Illuminate\Support\Facades\View;
 use Illuminate\Http\Request;
@@ -25,9 +25,17 @@ class EnrollController extends Controller
     public function index()
     {
         //
-        $courses = Courses::all();
+        //$courses = Courses::all();
+        $batches = DB::table('batches')
+            ->join('courses', 'batches.course_id', '=', 'courses.id')
+            ->select('batches.batch_id','batches.course_id','courses.name','batches.batch_name')
+            ->get();
+
+//        echo json_encode($batches);
+//        exit();
+
         return View::make('site/enroll/index')
-            ->with('courses',$courses);
+            ->with('batches',$batches);
     }
 
     /**
@@ -49,17 +57,56 @@ class EnrollController extends Controller
     public function store(Request $request)
     {
         //
+        //$enroll = $request->all();
         $enroll = New Enroll();
-        $enroll->course_id = Input::get('course_id');
+        $enroll->batch_id = Input::get('batch_id');
         $enroll->user_id = Input::get('user_id');
-        $enroll->name = Input::get('name');
-        $enroll->company = Input::get('company');
-        $enroll->address = Input::get('address');
-        $enroll->postcode = Input::get('postcode');
-        $enroll->telephone = Input::get('telephone');
-        $enroll->email = Input::get('email');
         $enroll->save();
-        return redirect()->action('/');
+
+        //get last record from enroll table and get enroll_id
+        $enroll = Enroll::all()->last();
+        $enroll_id = $enroll->enroll_id;
+
+        // count amount of register by food
+        $size = count(Input::get('food'));
+
+
+
+        for($index = 0 ; $index < $size ; $index++){
+            $name = Input::get('name');
+            $position = Input::get('position');
+            $food = Input::get('food');
+            $telephone = Input::get('telephone');
+
+            $enroll_detail = new EnrollDetail();
+            $enroll_detail->enroll_id = $enroll_id;
+            $enroll_detail->name = $name[$index];
+            $enroll_detail->position = $position[$index];
+            $enroll_detail->food = $food[$index];
+            $enroll_detail->telephone = $telephone[$index];
+
+            $enroll_detail->save();
+        }
+
+//        $name = Input::get('name');
+//        $position = Input::get('position');
+//        $food = Input::get('food');
+//        $telephone = Input::get('telephone');
+//
+//        foreach($food as $key => $n )
+//        {
+//            $arrData[] = array(
+//                "enroll_id"		=> $enroll_id,
+//                "name"		=> $name[$key],
+//                "position"		=> $position[$key],
+//                "food"	=> $food[$key],
+//                "telephone"	=> $telephone[$key]
+//            );
+//        }
+//        echo json_encode($arrData);
+//        exit();
+
+        return redirect()->action('HomeController@index');
     }
 
     /**

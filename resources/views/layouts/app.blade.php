@@ -57,26 +57,41 @@
                             <li class="nav-item active">
                                 <a class="nav-link btn btn-dark" href="{{ url('/report') }}">ระบบรายงาน</a>
                             </li>
+
+                            <li class="nav-item dropdown active">
+                                <a class="nav-link dropdown-toggle" href="" id="dropdown_user" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->display_name }}</a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown_user">
+                                    <a class="dropdown-item" href="{{ url('/logout') }}"
+                                       onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                                        ออกจากระบบ
+                                    </a>
+                                    <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form>
+                                </div>
+                            </li>
                         @else
                             <li class="nav-item active">
                                 <a class="nav-link btn btn-dark" href="{{ url('/') }}">หลักสูตร</a>
                             </li>
-                        @endif
-                    <li class="nav-item dropdown active">
-                        <a class="nav-link dropdown-toggle" href="https://example.com" id="dropdown_user" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->display_name }}</a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown_user">
-                            <a class="dropdown-item" href="#">แก้ไขข้อมูลส่วนตัว</a>
-                            <a class="dropdown-item" href="#">ตรวจสอบสถานะ</a>
-                            <a class="dropdown-item" href="{{ url('/logout') }}"
-                               onclick="event.preventDefault();
+
+                            <li class="nav-item dropdown active">
+                                <a class="nav-link dropdown-toggle" href="" id="dropdown_user" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->display_name }}</a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown_user">
+                                    <a class="dropdown-item" href="#">แก้ไขข้อมูลส่วนตัว</a>
+                                    <a class="dropdown-item" href="#">ตรวจสอบสถานะ</a>
+                                    <a class="dropdown-item" href="{{ url('/logout') }}"
+                                       onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
-                                ออกจากระบบ
-                            </a>
-                            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                                {{ csrf_field() }}
-                            </form>
-                        </div>
-                    </li>
+                                        ออกจากระบบ
+                                    </a>
+                                    <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form>
+                                </div>
+                            </li>
+                        @endif
                     @endif
                 </ul>
                 {{--<form class="form-inline my-2 my-lg-0">--}}
@@ -108,4 +123,20 @@
     <script src="{{ url('bootstrap/dist/js/bootstrap.min.js') }}"></script>
     <script src="{{ url('js/lity.js') }}"></script>
 </body>
+
+<script>
+    $(document).ready(function () {
+
+        //add more field group
+        $('#addMore').click(function () {
+            var fieldHTML = '<div class="form-group border p-3" id="fieldGroup">'+$('#fieldGroupCopy').html()+'</div>';
+            $('body').find('#fieldGroup:last').after(fieldHTML);
+        });
+
+        //remove fields group
+        $('body').on('click','#remove',function () {
+            $(this).parent('#fieldGroup').remove();
+        });
+    });
+</script>
 </html>
