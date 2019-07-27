@@ -38,3 +38,5 @@ Route::resource('backend/users','backend\UsersController');
 
 //Front-end Controller
 Route::resource('courses/enroll','EnrollController');
+Route::get('status','HomeController@check_status');
+Route::get('pdfreport/{id}/print','HomeController@pdfreport');

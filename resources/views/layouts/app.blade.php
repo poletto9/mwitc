@@ -55,18 +55,18 @@
                                 <a class="nav-link btn btn-dark" href="{{ url('/') }}">ระบบจัดการข้อมูล</a>
                             </li>
                             <li class="nav-item active">
-                                <a class="nav-link btn btn-dark" href="{{ url('/report') }}">ระบบรายงาน</a>
+                                <a class="nav-link btn btn-dark" href="{{ url('report') }}">ระบบรายงาน</a>
                             </li>
 
                             <li class="nav-item dropdown active">
                                 <a class="nav-link dropdown-toggle" href="" id="dropdown_user" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->display_name }}</a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown_user">
-                                    <a class="dropdown-item" href="{{ url('/logout') }}"
+                                    <a class="dropdown-item" href="{{ url('logout') }}"
                                        onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
                                         ออกจากระบบ
                                     </a>
-                                    <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                    <form id="logout-form" action="{{ url('logout') }}" method="POST" style="display: none;">
                                         {{ csrf_field() }}
                                     </form>
                                 </div>
@@ -80,13 +80,13 @@
                                 <a class="nav-link dropdown-toggle" href="" id="dropdown_user" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->display_name }}</a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown_user">
                                     <a class="dropdown-item" href="#">แก้ไขข้อมูลส่วนตัว</a>
-                                    <a class="dropdown-item" href="#">ตรวจสอบสถานะ</a>
-                                    <a class="dropdown-item" href="{{ url('/logout') }}"
+                                    <a class="dropdown-item" href="{{ url('status') }}">ตรวจสอบสถานะ</a>
+                                    <a class="dropdown-item" href="{{ url('logout') }}"
                                        onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
                                         ออกจากระบบ
                                     </a>
-                                    <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                    <form id="logout-form" action="{{ url('logout') }}" method="POST" style="display: none;">
                                         {{ csrf_field() }}
                                     </form>
                                 </div>

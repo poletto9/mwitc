@@ -17,3 +17,16 @@
         $strMonthThai=$strMonthCut[$strMonth];
         return "$strDay $strMonthThai $strYear";
     }
+
+    function formatFullDateThai($strDate)
+    {
+        $strYear = date("Y",strtotime($strDate))+543;
+        $strMonth= date("n",strtotime($strDate));
+        $strDay= date("j",strtotime($strDate));
+        $strHour= date("H",strtotime($strDate));
+        $strMinute= date("i",strtotime($strDate));
+        $strSeconds= date("s",strtotime($strDate));
+        $strFullMonth = Array("","มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม");
+        $strMonthThai=$strFullMonth[$strMonth];
+        return "$strDay $strMonthThai $strYear";
+    }
