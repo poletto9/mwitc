@@ -20,8 +20,8 @@ class CreateEnrollTable extends Migration
             $table->foreign('batch_id')->references('batch_id')->on('batches');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->integer('payment_state')->default(0); //สถานะจ่ายเงิน
             $table->integer('reg_state')->default(0); //สถานะลงทะเบียน
+            $table->integer('payment_state')->default(0); //สถานะจ่ายเงิน
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });

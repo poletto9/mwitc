@@ -4,7 +4,7 @@
 @section('content')
         <div class="container">
             <div class="card" style="margin: auto; max-width: 500px">
-                <div class="card-header bg-dark text-white">Reset Password</div>
+                <div class="card-header bg-dark text-white">ระบุอีเมลที่ท่านลงทะเบียน</div>
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success">
@@ -12,14 +12,14 @@
                         </div>
                     @endif
 
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/password/email') }}">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ url('password_reset') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email">E-Mail Address</label>
+                            <label for="email">อีเมล</label>
 
                             <div>
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" autofocus required>
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">
@@ -32,7 +32,10 @@
                         <div class="form-group">
                             <div>
                                 <button type="submit" class="btn btn-primary">
-                                    Send Password Reset Link
+                                    ตกลง
+                                </button>
+                                <button type="submit" class="btn btn-danger" onClick="window.location='http://localhost/course/public';">
+                                    ยกเลิก
                                 </button>
                             </div>
                         </div>

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\backend;
 
 use App\User;
+use Auth;
+use DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
@@ -23,7 +25,17 @@ class UsersController extends Controller
     public function index()
     {
         //
-        $users = User::paginate(5);
+        $users = DB::table('users')
+        ->join('districts','users.districts','=','districts.DISTRICT_CODE')
+        ->join('amphures','users.amphures','=','amphures.AMPHUR_ID')
+        ->join('provinces','users.provinces','=','provinces.PROVINCE_ID')
+        ->select('users.id','users.prefix_name','users.name','users.surname','users.member_type','users.email',
+        'users.company','users.address','districts.DISTRICT_NAME as districts','amphures.AMPHUR_NAME as amphures',
+        'provinces.PROVINCE_NAME as provinces','users.zipcodes','users.telephone','users.type')
+        ->paginate(5);
+        // echo json_encode($users);
+        // exit();
+        // $users = User::paginate(5);
         return View::make('backend/users/index')
             ->with('users',$users);
     }
@@ -55,9 +67,10 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
         //
+
     }
 
     /**

@@ -2,19 +2,23 @@
 
 @section('content')
 
-    <div class="container-fluid">
+    <div class="container">
         <div class="card">
             <div class="card-header">แสดงข้อมูลประสาน จำนวนทัั้งหมด {{ $users->total() }} คน</div>
-            <div class="card-body">
+            <div class="card-body" style="overflow-x:auto;">
                 <table class="table table-bordered table-hover table-responsive-lg">
                     <thead class="thead-dark">
                     <tr class="text-center">
                         <th scope="col">รหัส</th>
-                        <th scope="col">ชื่อ-นามสกุล</th>
-                        <th scope="col">นามแฝง</th>
+                        <th scope="col">คำนำหน้า</th>
+                        <th scope="col">ชื่อ</th>
+                        <th scope="col">นามสกุล</th>
+                        <th scope="col">ประเภทสมาชิก</th>
                         <th scope="col">e-mail</th>
                         <th scope="col">ชื่อองค์กร</th>
                         <th scope="col">ที่อยู่</th>
+                        <th scope="col">แขวง/ตำบล</th>
+                        <th scope="col">เขต/อำเภอ</th>
                         <th scope="col">จังหวัด</th>
                         <th scope="col">รหัสไปรษณีย์</th>
                         <th scope="col">เบอร์ติดต่อ</th>
@@ -27,13 +31,17 @@
                     @forelse($users as $user)
                         <tr class="text-center">
                             <td class="">{{ $user->id }}</td>
+                            <td class="">{{ $user->prefix_name }}</td>
                             <td class="">{{ $user->name }}</td>
-                            <td class="">{{ $user->display_name }}</td>
+                            <td class="">{{ $user->surname }}</td>
+                            <td class="">{{ $user->member_type }}</td>
                             <td class="">{{ $user->email }}</td>
                             <td class="">{{ $user->company }}</td>
                             <td class="">{{ $user->address }}</td>
-                            <td class="">{{ $user->province }}</td>
-                            <td class="">{{ $user->postcode }}</td>
+                            <td class="">{{ $user->districts }}</td>
+                            <td class="">{{ $user->amphures }}</td>
+                            <td class="">{{ $user->provinces }}</td>
+                            <td class="">{{ $user->zipcodes }}</td>
                             <td class="">{{ $user->telephone }}</td>
                             <td class="">{{ $user->type }}</td>
                             <td class="">

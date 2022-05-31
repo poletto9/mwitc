@@ -2,50 +2,110 @@
 
 @section('content')
 
-    <main role="main">
+        <!-- <section class="jumbotron text-center">
+        <div class="container">
+        <h1 class="jumbotron-heading">Album example</h1>
+        <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p>
+        <p>
+        <a href="#" class="btn btn-primary my-2">Main call to action</a>
+        <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+        </p>
+        </div>
+        </section> -->
 
-        {{--<section class="jumbotron text-center">--}}
-        {{--<div class="container">--}}
-        {{--<h1 class="jumbotron-heading">Album example</h1>--}}
-        {{--<p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p>--}}
-        {{--<p>--}}
-        {{--<a href="#" class="btn btn-primary my-2">Main call to action</a>--}}
-        {{--<a href="#" class="btn btn-secondary my-2">Secondary action</a>--}}
-        {{--</p>--}}
-        {{--</div>--}}
-        {{--</section>--}}
+        <!-- <div class="jumbotron">
+        <div class="col-sm-8 mx-auto">
+        <h1>Navbar examples</h1>
+        <p>This example is a quick exercise to illustrate how the navbar and its contents work. Some navbars extend the width of the viewport, others are confined within a <code>.container</code>. For positioning of navbars, checkout the <a href="../navbar-static/">top</a> and <a href="../navbar-fixed/">fixed top</a> examples.</p>
+        <p>At the smallest breakpoint, the collapse plugin is used to hide the links and show a menu button to toggle the collapsed content.</p>
+        <p>
+        <a class="btn btn-primary" href="../../components/navbar/" role="button">View navbar docs »</a>
+        </p>
+        </div>
+        </div> -->
 
-        {{--<div class="jumbotron">--}}
-        {{--<div class="col-sm-8 mx-auto">--}}
-        {{--<h1>Navbar examples</h1>--}}
-        {{--<p>This example is a quick exercise to illustrate how the navbar and its contents work. Some navbars extend the width of the viewport, others are confined within a <code>.container</code>. For positioning of navbars, checkout the <a href="../navbar-static/">top</a> and <a href="../navbar-fixed/">fixed top</a> examples.</p>--}}
-        {{--<p>At the smallest breakpoint, the collapse plugin is used to hide the links and show a menu button to toggle the collapsed content.</p>--}}
-        {{--<p>--}}
-        {{--<a class="btn btn-primary" href="../../components/navbar/" role="button">View navbar docs »</a>--}}
-        {{--</p>--}}
-        {{--</div>--}}
-        {{--</div>--}}
+    <main role="main" class="container">
+        <div class="card"><div class="card-header"><i class="fa fa-globe blink_me" style="color:green"></i> หลักสูตรที่เปิดรับสมัคร</div>
+        <div class="card-body">
+            <div class="row justify-content-center">
+              @foreach($courses as $course)
+                @if ( $course->status == 1)
+                  <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                      <div class="card-body">
+                          <h5 class="card-title">หลักสูตร {{ $course->name  }}</h5>
+                          <div class="d-flex justify-content-between align-items-center">
+                              <div class="btn-group">
+                                  <a href="{{ url('outline/'.$course->id) }}" class="btn btn-sm btn-primary">รายละเอียดเพิ่มเติม »</a>
+                                  <a href="{{ url('courses/enroll') }}" class="btn btn-sm btn-success">สมัครอบรม »</a>
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                @endif
+              @endforeach
+            </div>
+          </div>
+        </div>
 
-        <div class="album bg-light">
+      </main>
+
+      <div style="margin-top:1rem"></div>
+
+      <main role="main" class="container">
+        <div class="card"><div class="card-header"><i class="fa fa-globe blink_me" style="color:red"></i> หลักสูตรที่ยังไม่เปิดรับสมัคร</div>
+          <div class="card-body">
+            <div class="row justify-content-center">
+              @foreach($courses as $course)
+                @if ( $course->status != 1)
+                  <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                      <div class="card-body">
+                          <h5 class="card-title">หลักสูตร {{ $course->name  }}</h5>
+                          <div class="d-flex justify-content-between align-items-center">
+                              <div class="btn-group">
+                                  <a href="{{ url('courses/enroll') }}" class="btn btn-sm btn-danger disabled">ยังไม่เปิดรับสมัคร »</a>
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                @endif
+              @endforeach
+            </div>
+          </div>
+        </div>
+      </main>
+
+
+
+
+        <!-- <div class="album bg-light">
             <div class="container">
                 <div class="row">
-                    @foreach($courses as $course)
-                        <div class="col-md-4">
+                    @foreach($courses as $course) -->
+                        <!-- <div class="col-md-4">
                             <div class="card mb-4 shadow-sm">
                                 <div class="card-body">
                                     <h5 class="card-title">หลักสูตร {{ $course->name  }}</h5>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
                                             <a href="javascript:void(0)" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#box{{ $course->id  }}">รายละเอียดเพิ่มเติม »</a>
-                                            <a href="{{ url('courses/enroll') }}" class="btn btn-sm btn-outline-success @if ( ($course->status != 1) ) disabled @endif">สมัครอบรม »</a>
+                                            @if ( $course->status != 1)
+                                                <a href="{{ url('courses/enroll') }}" class="btn btn-sm btn-outline-danger disabled">ยังไม่เปิดรับสมัคร »</a>
+                                            @else
+                                                <a href="{{ url('courses/enroll') }}" class="btn btn-sm btn-outline-success">สมัครอบรม »</a>
+                                            @endif
+
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
                         <!-- Modal -->
-                        <div class="modal fade" id="box{{ $course->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <!-- <div class="modal fade" id="box{{ $course->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -63,14 +123,17 @@
                                     </div>
                                     <div class="modal-footer">
                                         <a href="javascript:void (0)" class="btn btn-secondary" data-dismiss="modal">ปิด</a>
-                                        <a href="{{ url('courses/enroll') }}" class="btn btn-success @if ( ($course->status != 1) ) disabled @endif">สมัครอบรม</a>
+                                        @if ( $course->status != 1)
+                                            <a href="{{ url('courses/enroll') }}" class="btn btn-danger disabled">ยังไม่เปิดรับสมัคร »</a>
+                                        @else
+                                            <a href="{{ url('courses/enroll') }}" class="btn btn-success">สมัครอบรม »</a>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
+                        </div> -->
+                    <!-- @endforeach
                 </div>
             </div>
-        </div>
-    </main>
+        </div> -->
 @endsection

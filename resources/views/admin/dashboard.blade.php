@@ -40,10 +40,24 @@
                         <div class="col-md-4">
                             <div class="card mb-4 shadow-sm">
                                 <div class="card-body">
-                                    <div class="card-title">ข้อมูลผู้ใช้</div>
+                                    <div class="card-title">ข้อมูลสมาชิก</div>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
                                             <a href="{{ url('backend/users') }}" class="btn btn-sm btn-outline-success">จัดการข้อมูล »</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card mb-4 shadow-sm">
+                                <div class="card-body">
+                                    <div class="card-title">ข้อมูลลงทะเบียนอบรมหลักสูตร</div>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            <a href="{{ url('backend/enrolls') }}" class="btn btn-sm btn-outline-success">จัดการข้อมูล »</a>
                                         </div>
                                     </div>
                                 </div>

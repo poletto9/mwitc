@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Enroll extends Model
 {
@@ -20,5 +21,10 @@ class Enroll extends Model
 
     public function EnrollDetail(){
         return $this->hasMany(EnrollDetail::class); //กำหนด One to Many relation ไปยังตาราง EnrollDetail
+    }
+
+    public function updateById($id, $data = array())
+    {
+        return DB::table('enroll')->where('enroll_id', '=', $id)->update($data);
     }
 }

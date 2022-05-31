@@ -103,6 +103,8 @@ class CoursesController extends Controller
         $course = Courses::find($id);
         $course->name = Input::get('course_name');
         $course->desc = Input::get('description');
+        $course->amount = Input::get('amount');
+        $course->cost = Input::get('cost');
         $course->status = Input::get('status');
         $course->save();
         return redirect()->action('backend\CoursesController@index');

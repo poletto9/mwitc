@@ -19,8 +19,10 @@ class CreateBatchesTable extends Migration
             $table->integer('course_id')->unsigned();
             $table->foreign('course_id')->references('id')->on('courses');
             $table->string('batch_name');
-            $table->date('deadline');
+            $table->date('start_reg');
+            $table->date('end_reg');
             $table->date('training_date');
+            $table->string('batch_type');
             $table->string('place');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));

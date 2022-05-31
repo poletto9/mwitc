@@ -31,7 +31,7 @@ class BatchesController extends Controller
 
         $batches = DB::table('batches')
                 ->join('courses', 'batches.course_id', '=', 'courses.id')
-                ->select('batches.batch_id', 'courses.name', 'batches.batch_name', 'batches.deadline', 'batches.training_date', 'batches.place')
+                ->select('batches.batch_id', 'courses.name', 'batches.batch_name', 'batches.start_reg', 'batches.end_reg', 'batches.training_date', 'batches.batch_type', 'batches.place')
                 ->paginate(5);
 
 //        $batches = array(
@@ -67,8 +67,10 @@ class BatchesController extends Controller
         $batch = new Batches();
         $batch->course_id = Input::get('course_id');
         $batch->batch_name = Input::get('batch_name');
-        $batch->deadline = Input::get('deadline');
+        $batch->start_reg = Input::get('start_reg');
+        $batch->end_reg = Input::get('end_reg');
         $batch->training_date = Input::get('training_date');
+        $batch->batch_type = Input::get('batch_type');
         $batch->place = Input::get('place');
         $batch->save();
         return redirect()->action('backend\BatchesController@index');
@@ -97,7 +99,7 @@ class BatchesController extends Controller
         //
         $batch = DB::table('batches')
             ->join('courses', 'batches.course_id', '=', 'courses.id')
-            ->select('batches.batch_id', 'batches.course_id', 'courses.name', 'batches.batch_name', 'batches.deadline', 'batches.training_date', 'batches.place')
+            ->select('batches.batch_id', 'batches.course_id', 'courses.name', 'batches.batch_name', 'batches.start_reg', 'batches.end_reg', 'batches.training_date', 'batches.batch_type', 'batches.place')
             ->where('batches.batch_id','=',$id )
             ->get();
 
@@ -128,8 +130,10 @@ class BatchesController extends Controller
         $batch->updateById($id, array(
                 'course_id' => $request->input('course_id'),
                 'batch_name' => $request->input('batch_name'),
-                'deadline' => $request->input('deadline'),
+                'start_reg' => $request->input('start_reg'),
+                'end_reg' => $request->input('end_reg'),
                 'training_date' => $request->input('training_date'),
+                'batch_type' => $request->input('batch_type'),
                 'place' => $request->input('place')
             )
         );

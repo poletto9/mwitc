@@ -18,7 +18,9 @@ class CreateEnrollDetailTable extends Migration
             $table->increments('reg_id');
             $table->integer('enroll_id')->unsigned();
             $table->foreign('enroll_id')->references('enroll_id')->on('enroll');
+            $table->string('prefix_name');
             $table->string('name');
+            $table->string('surname');
             $table->string('position');
             $table->string('food');
             $table->string('telephone');

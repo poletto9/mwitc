@@ -7,17 +7,17 @@
             <div class="col"></div>
             <div class="col-md-4">
                 <div class="card">
-                    <div class="card-header bg-dark text-white">ชื่อ-นามสกุล ผู้ประสาน</div>
+                    <div class="card-header bg-dark text-white">ชื่อ-นามสกุล {{ Auth::user()->member_type }}</div>
                     <div class="card">
                         <div class="card-body">
-                            {{ Auth::user()->name }}
+                            {{ Auth::user()->name }} {{ Auth::user()->surname }}
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="card">
-                    <div class="card-header bg-dark text-white">บริษัท</div>
+                    <div class="card-header bg-dark text-white">ชื่อสถานประกอบการ/หน่วยงาน/องค์กร/บริษัท</div>
                     <div class="card">
                         <div class="card-body">
                             {{ Auth::user()->company }}
@@ -50,7 +50,7 @@
                             <td>{{ $enroll->enroll_id }}</td>
                             <td>{{ $enroll->name }}</td>
                             <td>{{ $enroll->batch_name }}</td>
-                            <td>{{ $enroll->cost }}</td>
+                            <td>{{ $enroll->cost * $enroll->enroll_count }}</td>
                             <td>
                                 @if($enroll->reg_state == 0)
                                     <span class="fa fa-close text-danger" style="font-size: 1.5em"></span>
@@ -68,12 +68,12 @@
                             </td>
                             <td>{{ formatDateThai($enroll->training_date) }}</td>
                             <td>
-                                {{--@if($enroll->reg_state == 0)--}}
-                                    {{--<button type="submit" class="btn btn-success btn-lg fa fa-print" disabled></button>--}}
-                                {{--@else--}}
+                                @if($enroll->payment_state != 0)
+                                    <button type="submit" class="btn btn-danger btn-lg fa fa-print" disabled></button>
+                                @else
                                     <a href="{{ url('pdfreport/'.$enroll->enroll_id.'/print') }}" class="btn btn-success btn-lg fa fa-print" target="_blank"></a>
 
-                                {{--@endif--}}
+                                @endif
                             </td>
                         </tr>
                     @empty

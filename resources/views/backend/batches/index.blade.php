@@ -1,6 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
+<?php
+// echo json_encode($batches);
+// exit();
+?>
 
     <div class="container">
         <?= link_to('backend/batches/create', $title = 'เพิ่มข้อมูล', ['class' => 'btn btn-success'], $secure = null); ?>
@@ -14,8 +18,10 @@
                         <th scope="col">รหัส</th>
                         <th scope="col">ชื่อหลักสูตร</th>
                         <th scope="col">รุ่นที่</th>
+                        <th scope="col">วันที่เริ่มต้น</th>
                         <th scope="col">วันที่หมดเขต</th>
                         <th scope="col">วันที่อบรม</th>
+                        <th scope="col">รูปแบบอบรม</th>
                         <th scope="col">สถานที่จัดอบรม</th>
                         <th scope="col">แก้ไข</th>
                         <th scope="col">ลบ</th>
@@ -27,8 +33,10 @@
                             <td class="text-center">{{ $batch->batch_id }}</td>
                             <td>{{$batch->name}}</td>
                             <td class="text-center">{{ $batch->batch_name }}</td>
-                            <td class="text-center">{{ formatDateThai($batch->deadline) }}</td>
+                            <td class="text-center">{{ formatDateThai($batch->start_reg) }}</td>
+                            <td class="text-center">{{ formatDateThai($batch->end_reg) }}</td>
                             <td class="text-center">{{ formatDateThai($batch->training_date) }}</td>
+                            <td class="text-center">{{ $batch->batch_type }}</td>
                             <td class="text-center">{{ $batch->place }}</td>
                             <td class="text-center">
                                 <a href="{{ url('backend/batches/'.$batch->batch_id.'/edit') }}" class="btn btn-warning btn-lg fa fa-edit"></a>

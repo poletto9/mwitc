@@ -29,7 +29,7 @@ class EnrollController extends Controller
         //$courses = Courses::all();
         $batches = DB::table('batches')
             ->join('courses', 'batches.course_id', '=', 'courses.id')
-            ->select('batches.batch_id','batches.course_id','courses.name','batches.batch_name')
+            ->select('batches.batch_id','batches.course_id','courses.name','batches.batch_name','batches.batch_type')
             ->get();
 
 //        echo json_encode($batches);
@@ -62,6 +62,7 @@ class EnrollController extends Controller
         $enroll = New Enroll();
         $enroll->batch_id = Input::get('batch_id');
         $enroll->user_id = Input::get('user_id');
+        $enroll->reg_state = 1;
         $enroll->save();
 
         //get last record from enroll table and get enroll_id
@@ -69,19 +70,23 @@ class EnrollController extends Controller
         $enroll_id = $enroll->enroll_id;
 
         // count amount of register by food
-        $size = count(Input::get('food'));
+        $size = count(Input::get('prefix_name'));
 
 
 
         for($index = 0 ; $index < $size ; $index++){
+            $prefix_name = Input::get('prefix_name');
             $name = Input::get('name');
+            $surname = Input::get('surname');
             $position = Input::get('position');
             $food = Input::get('food');
             $telephone = Input::get('telephone');
 
             $enroll_detail = new EnrollDetail();
             $enroll_detail->enroll_id = $enroll_id;
+            $enroll_detail->prefix_name = $prefix_name[$index];
             $enroll_detail->name = $name[$index];
+            $enroll_detail->surname = $surname[$index];
             $enroll_detail->position = $position[$index];
             $enroll_detail->food = $food[$index];
             $enroll_detail->telephone = $telephone[$index];

@@ -4,13 +4,13 @@
 
     <div class="container">
             <div class="card" style="max-width: 500px; margin: auto">
-            <div class="card-header bg-dark text-white">ลงชื่อเข้าใช้</div>
+            <div class="card-header bg-dark text-white">ลงชื่อเข้าใช้ระบบ</div>
             <div class="card-body">
                 <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
                     {{ csrf_field() }}
 
                     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                        <label for="email">E-Mail Address</label>
+                        <label for="email">อีเมล</label>
 
                         <div>
                             <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
@@ -24,7 +24,7 @@
                     </div>
 
                     <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                        <label for="password">Password</label>
+                        <label for="password">รหัสผ่าน</label>
 
                         <div>
                             <input id="password" type="password" class="form-control" name="password" required>
@@ -41,7 +41,7 @@
 
                             <div>
                                 <label>
-                                    <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : ''}}> Remember Me
+                                    <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : ''}}> จดจำฉัน
                                 </label>
                             </div>
 
@@ -50,11 +50,11 @@
                     <div class="form-group">
                         <div class="">
                             <button type="submit" class="btn btn-primary">
-                                Login
+                                เข้าใช้ระบบ
                             </button>
 
-                            <a class="btn btn-link" href="{{ url('/password/reset') }}">
-                                Forgot Your Password?
+                            <a class="btn btn-link" href="{{ url('forgot_password') }}">
+                                ลืมรหัสผ่าน?
                             </a>
                         </div>
                     </div>
