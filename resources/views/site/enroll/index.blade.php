@@ -33,6 +33,7 @@
 
                     <input type="hidden" id="user_id" name="user_id" value="{{ Auth::user()->id }}">
 
+                    @if(Auth::user()->member_type != "ผู้เข้าอบรม")
                     <div class="form-group border p-3" id="fieldGroup">
                         <div class="form-row">
                             <div class="col-md-6">
@@ -76,6 +77,61 @@
                         </div><br>
                         <a id="addMore" href="javascript:void(0)" class="btn btn-success"><span class="fa fa-plus" aria-hidden="true"></span> Add</a>
                     </div>
+                    @else
+                    <div class="form-group border p-3" id="fieldGroup">
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <label for="name" class="col-form-label">คำนำหน้าชื่อ</label>
+                                <select class="form-control" name="prefix_name[]" id="prefix_name" required>
+                                  <option value="" disabled>เลือกคำนำหน้าชื่อ</option>
+                                  @if(Auth::user()->prefix_name == "นาย")
+                                    <option value="นาย" selected>นาย</option>
+                                    <option value="นาง">นาง</option>
+                                    <option value="นางสาว">นางสาว</option>
+                                  @elseif(Auth::user()->prefix_name == "นาง")
+                                    <option value="นาย">นาย</option>
+                                    <option value="นาง" selected>นาง</option>
+                                    <option value="นางสาว">นางสาว</option>
+                                  @else
+                                    <option value="นาย">นาย</option>
+                                    <option value="นาง">นาง</option>
+                                    <option value="นางสาว" selected>นางสาว</option>
+                                  @endif
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="name" class="col-form-label">ชื่อ</label>
+                                <input type="text" name="name[]" class="form-control" value="{{ Auth::user()->name }}" placeholder="ระบุชื่อ" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="surname" class="col-form-label">นามสกุล</label>
+                                <input type="text" name="surname[]" class="form-control" value="{{ Auth::user()->surname }}" placeholder="ระบุนามสกุล" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="position" class="col-form-label">ตำแหน่งงาน</label>
+                                <input type="text" name="position[]" class="form-control" placeholder="ตำแหน่งงาน" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            @if($batch->batch_type != 'Online')
+                            <div class="col-md-6">
+                                <label for="food" class="col-form-label">อาหาร</label>
+                                <select class="form-control" name="food[]" required>
+                                    <option value="" disabled selected>กรุณาเลือกอาหาร</option>
+                                    <option value="ทั่วไป">ทั่วไป</option>
+                                    <option value="อิสลาม">อิสลาม</option>
+                                    <option value="มังสวิรัติ">มังสวิรัติ</option>
+                                </select>
+                            </div>
+                            @endif
+                            <div class="col-md-6">
+                                <label for="telephone" class="col-form-label">เบอร์ติดต่อ</label>
+                                <input type="text" name="telephone[]" class="form-control" value="{{ Auth::user()->telephone }}" placeholder="เบอร์ติดต่อ" required>
+                            </div>
+                        </div><br>
+                        <a id="addMore" href="javascript:void(0)" class="btn btn-success"><span class="fa fa-plus" aria-hidden="true"></span> Add</a>
+                    </div>
+                    @endif
 
                     <!-- copy of input fields group -->
                     <div class="form-group border p-3" id="fieldGroupCopy" style="display: none;">
