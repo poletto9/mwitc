@@ -47,7 +47,7 @@
                 <div class="card">
                   <div class="card-header"><i class="fa fa-book"></i> ค่าลงทะเบียนอบรม</div>
                   <div class="card-body">
-                    <p>800 บาท ต่อ 1 ท่าน</p>
+                    <p>600 บาท ต่อ 1 ท่าน</p>
                   </div>
                 </div>
                 <br>
