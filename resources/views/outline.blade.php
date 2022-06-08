@@ -94,9 +94,7 @@
                 <div class="card">
                   <div class="card-header"><i class="fa fa-book"></i> ติดต่อสื่อสาร</div>
                   <div class="card-body">
-                    <a href="https://line.me/R/ti/g/-2KtT-ksoz">
-                      <img src="{{ url('images/2f06ac6d9ab8a5fb0a62e36e39576e1d.jpg') }}" style="max-width:45%;height:auto;">
-                    </a>
+                    <img src="{{ url('images/S__16474191.jpg') }}" style="max-width:45%;height:auto;">
                   </div>
                 </div>
               </div>
