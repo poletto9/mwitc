@@ -51,6 +51,10 @@
                         <li class="nav-item active">
                             <a class="nav-link btn btn-dark" href="{{ url('register') }}">สมัครสมาชิก</a>
                         </li>
+                        &nbsp;
+                        <li class="nav-item active">
+                            <a class="nav-link btn btn-dark" href="{{ url('https://drive.google.com/file/d/1Ox-KjASPLQaYXOSZ-rMUpUmyDDDwxwv6/view?usp=sharing') }}" target="_blank">คู่มือใช้งาน</a>
+                        </li>
                     @else
                         @if(Auth::check() && Auth::user()->isAdmin())
                             <li class="nav-item active">
