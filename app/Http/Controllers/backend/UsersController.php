@@ -32,6 +32,7 @@ class UsersController extends Controller
         ->select('users.id','users.prefix_name','users.name','users.surname','users.member_type','users.email',
         'users.company','users.address','districts.DISTRICT_NAME as districts','amphures.AMPHUR_NAME as amphures',
         'provinces.PROVINCE_NAME as provinces','users.zipcodes','users.telephone','users.type')
+        ->orderBy('users.id', 'asc')
         ->paginate(5);
         // echo json_encode($users);
         // exit();
