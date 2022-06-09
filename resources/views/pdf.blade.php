@@ -92,11 +92,33 @@
             </div>
             @endif
 
-            <div>
-                3.<b> วิธีการชำระเงิน </b>ชำระเงินค่าลงทะเบียนท่านละ <span style="border-bottom: 1px dotted;">{{ $val->cost }}</span> บาท
-                จำนวน <span style="border-bottom: 1px dotted;">{{ count($enroll_detail)  }}</span> คน
-                รวมเป็นเงิน <span style="border-bottom: 1px dotted;">{{ $val->cost*count($enroll_detail) }}</span> บาท
-            </div>
+
+            @if($val->discount == 0)
+              <div>
+                  3.<b> วิธีการชำระเงิน </b>ชำระเงินค่าลงทะเบียนท่านละ <span style="border-bottom: 1px dotted;">{{ $val->cost }}</span> บาท
+                  จำนวน <span style="border-bottom: 1px dotted;">{{ count($enroll_detail)  }}</span> คน
+                  รวมเป็นเงิน <span style="border-bottom: 1px dotted;">{{ $val->cost * count($enroll_detail) }}</span> บาท
+              </div>
+            @else
+              @if(count($enroll_detail) >= $val->minimum)
+                <div>
+                    3.<b> วิธีการชำระเงิน </b>ชำระเงินค่าลงทะเบียนท่านละ <span style="border-bottom: 1px dotted;">{{ $val->discount }}</span> บาท
+                    จำนวน <span style="border-bottom: 1px dotted;">{{ count($enroll_detail)  }}</span> คน
+                    รวมเป็นเงิน <span style="border-bottom: 1px dotted;">{{ $val->discount * count($enroll_detail) }}</span> บาท
+                </div>
+              @else
+                <div>
+                    3.<b> วิธีการชำระเงิน </b>ชำระเงินค่าลงทะเบียนท่านละ <span style="border-bottom: 1px dotted;">{{ $val->cost }}</span> บาท
+                    จำนวน <span style="border-bottom: 1px dotted;">{{ count($enroll_detail)  }}</span> คน
+                    รวมเป็นเงิน <span style="border-bottom: 1px dotted;">{{ $val->cost * count($enroll_detail) }}</span> บาท
+                </div>
+              @endif
+            @endif
+
+
+
+
+
             <div style="text-indent: 115px !important;">
                 <div>
                     โดยโอนเงินเข้าบัญชีกระแสรายวัน ธนาคารกรุงไทย สาขาสะพานใหม่

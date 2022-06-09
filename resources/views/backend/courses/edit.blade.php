@@ -57,6 +57,30 @@
                             @endif
                         </div>
                     </div>
+                    <div class="form-group row {{ $errors->has('discount') ? ' has-error' : '' }}">
+                        <label for="discount" class="col-sm-2 col-form-label">ส่วนลด</label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" id="discount" name="discount" value="{{ $course->discount }}" required>
+
+                            @if ($errors->has('discount'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('discount') }}</strong>
+                                    </span>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="form-group row {{ $errors->has('minimum') ? ' has-error' : '' }}">
+                        <label for="minimum" class="col-sm-2 col-form-label">จำนวนขั้นต่ำ</label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" id="minimum" name="minimum" value="{{ $course->minimum }}" required>
+
+                            @if ($errors->has('minimum'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('minimum') }}</strong>
+                                    </span>
+                            @endif
+                        </div>
+                    </div>
                     <div class="form-group row {{ $errors->has('status') ? ' has-error' : '' }}">
                         <label for="status" class="col-sm-2 col-form-label">สถานะ</label>
                         <div class="col-md-10">

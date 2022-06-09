@@ -75,23 +75,31 @@ class EnrollController extends Controller
 
 
         for($index = 0 ; $index < $size ; $index++){
-            $prefix_name = Input::get('prefix_name');
-            $name = Input::get('name');
-            $surname = Input::get('surname');
-            $position = Input::get('position');
-            $food = Input::get('food');
-            $telephone = Input::get('telephone');
+          $prefix_name = Input::get('prefix_name');
+          $name = Input::get('name');
+          $surname = Input::get('surname');
+          $position = Input::get('position');
+          $food = Input::get('food');
+          $telephone = Input::get('telephone');
 
-            $enroll_detail = new EnrollDetail();
-            $enroll_detail->enroll_id = $enroll_id;
+          $enroll_detail = new EnrollDetail();
+          $enroll_detail->enroll_id = $enroll_id;
+          if ($index == 0) {
             $enroll_detail->prefix_name = $prefix_name[$index];
             $enroll_detail->name = $name[$index];
             $enroll_detail->surname = $surname[$index];
             $enroll_detail->position = $position[$index];
             $enroll_detail->food = $food[$index];
             $enroll_detail->telephone = $telephone[$index];
-
-            $enroll_detail->save();
+          }else{
+            $enroll_detail->prefix_name = $prefix_name[$size - $index];
+            $enroll_detail->name = $name[$size - $index];
+            $enroll_detail->surname = $surname[$size - $index];
+            $enroll_detail->position = $position[$size - $index];
+            $enroll_detail->food = $food[$size - $index];
+            $enroll_detail->telephone = $telephone[$size - $index];
+          }
+          $enroll_detail->save();
         }
 
 //        $name = Input::get('name');

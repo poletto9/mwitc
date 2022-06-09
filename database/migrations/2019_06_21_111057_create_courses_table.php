@@ -20,6 +20,8 @@ class CreateCoursesTable extends Migration
             $table->text('desc')->lenght(0);
             $table->integer('amount'); //จำนวนรุ่นที่เปิด
             $table->integer('cost'); //ราคา
+            $table->integer('discount')->default(0); //ส่วนลด
+            $table->integer('minimum')->default(0); //จำนวนขั้นต่ำ
             $table->integer('status')->default(0);
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));

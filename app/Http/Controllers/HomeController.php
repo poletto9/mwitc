@@ -56,7 +56,7 @@ class HomeController extends Controller
             ->join('courses', 'batches.course_id', '=', 'courses.id')
             ->join('enroll_detail','enroll.enroll_id','=','enroll_detail.enroll_id')
             ->select('enroll.enroll_id','courses.name','batches.batch_name',
-                'courses.cost','enroll.reg_state','enroll.payment_state','batches.training_date',
+                'courses.cost','courses.discount','courses.minimum','enroll.reg_state','enroll.payment_state','batches.training_date',
                 DB::raw('count(enroll_detail.enroll_id) as enroll_count'))
             ->where('users.id','=',Auth::user()->id)
             ->groupBy('enroll.enroll_id')
@@ -81,7 +81,7 @@ class HomeController extends Controller
             ->join('batches', 'enroll.batch_id', '=', 'batches.batch_id')
             ->join('courses', 'batches.course_id', '=', 'courses.id')
             ->select('enroll.enroll_id','courses.name','batches.batch_name',
-                'courses.cost','enroll.reg_state','enroll.payment_state','batches.training_date',
+                'courses.cost','courses.discount','courses.minimum','enroll.reg_state','enroll.payment_state','batches.training_date',
                 'batches.place','batches.start_reg','batches.end_reg','batches.batch_type','provinces.PROVINCE_NAME')
             ->where('enroll_id','=',$id)
             ->get();

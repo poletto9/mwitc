@@ -37,6 +37,7 @@
                         <th scope="col">รหัสลงทะเบียน</th>
                         <th scope="col">ชื่อหลักสูตร</th>
                         <th scope="col">รุ่นที่</th>
+                        <th scope="col">จำนวน</th>
                         <th scope="col">ราคา</th>
                         <th scope="col">การสมัคร</th>
                         <th scope="col">ชำระเงิน</th>
@@ -50,7 +51,19 @@
                             <td>{{ $enroll->enroll_id }}</td>
                             <td>{{ $enroll->name }}</td>
                             <td>{{ $enroll->batch_name }}</td>
-                            <td>{{ $enroll->cost * $enroll->enroll_count }}</td>
+                            <td>{{ $enroll->enroll_count }} คน</td>
+                            @if($enroll->discount == 0)
+                              <td>{{ $enroll->cost * $enroll->enroll_count }}</td>
+                            @else
+                              @if($enroll->enroll_count >= $enroll->minimum)
+                                <td>{{ $enroll->discount * $enroll->enroll_count }}</td>
+                              @else
+                                <td>{{ $enroll->cost * $enroll->enroll_count }}</td>
+                              @endif
+                            @endif
+
+
+
                             <td>
                                 @if($enroll->reg_state == 0)
                                     <span class="fa fa-close text-danger" style="font-size: 1.5em"></span>

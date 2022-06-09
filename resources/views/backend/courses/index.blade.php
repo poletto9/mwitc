@@ -16,6 +16,8 @@
                                 <th scope="col">วัตถุประสงค์</th>
                                 <th scope="col">จำนวนรุ่น</th>
                                 <th scope="col">ราคา</th>
+                                <th scope="col">ส่วนลด</th>
+                                <th scope="col">จำนวนขั้นต่ำ</th>
                                 <th scope="col">สถานะ</th>
                                 <th scope="col">แก้ไข</th>
                                 <th scope="col">ลบ</th>
@@ -29,6 +31,8 @@
                                 <td>{{ $course->desc }}</td>
                                 <td class="text-center">{{ $course->amount }}</td>
                                 <td class="text-center">{{ $course->cost }}</td>
+                                <td class="text-center">{{ $course->discount }}</td>
+                                <td class="text-center">{{ $course->minimum }}</td>
                                 <td class="text-center">
                                     @if( $course->status == 0)
                                         {{ 'ปิด' }}

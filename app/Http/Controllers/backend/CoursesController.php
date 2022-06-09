@@ -60,6 +60,8 @@ class CoursesController extends Controller
         $course->desc = Input::get('description');
         $course->amount = Input::get('amount');
         $course->cost = Input::get('cost');
+        $course->discount = Input::get('discount');
+        $course->minimum = Input::get('minimum');
         $course->status = Input::get('status');
         $course->save();
         return redirect()->action('backend\CoursesController@index');
@@ -105,6 +107,8 @@ class CoursesController extends Controller
         $course->desc = Input::get('description');
         $course->amount = Input::get('amount');
         $course->cost = Input::get('cost');
+        $course->discount = Input::get('discount');
+        $course->minimum = Input::get('minimum');
         $course->status = Input::get('status');
         $course->save();
         return redirect()->action('backend\CoursesController@index');
