@@ -5,7 +5,7 @@
     <div class="container">
         <div class="card">
             <div class="card-header">แสดงข้อมูลลงทะเบียนอบรมหลักสูตร จำนวนทัั้งหมด {{ $enrolls->total() }} รายการ</div>
-            <div class="card-body">
+            <div class="card-body" style="overflow-x:auto;">
                 <table class="table table-bordered table-responsive-lg">
                     <thead class="thead-dark">
                     <tr class="text-center">
@@ -13,7 +13,9 @@
                         <th scope="col">ชื่อหลักสูตร</th>
                         <th scope="col">รุ่นที่</th>
                         <th scope="col">ชื่อผู้ประสาน</th>
+                        <th scope="col">นามสกุล</th>
                         <th scope="col">ชื่อองค์กร</th>
+                        <th scope="col">เบอร์ติดต่อ</th>
                         <th scope="col">จำนวน</th>
                         <th scope="col">การสมัคร</th>
                         <th scope="col">ชำระเงิน</th>
@@ -30,7 +32,9 @@
                             <td>{{ $enroll->course_name }}</td>
                             <td>{{ $enroll->batch_name }}</td>
                             <td>{{ $enroll->name }}</td>
+                            <td>{{ $enroll->surname }}</td>
                             <td>{{ $enroll->company }}</td>
+                            <td>{{ $enroll->telephone }}</td>
                             <td>{{ $enroll->enroll_count }} คน</td>
                             <td>
                                 @if($enroll->reg_state == 0)
@@ -47,15 +51,7 @@
                                 @endif
                             </td>
                             <td>
-                              <a href="{{ url('pdfreport/'.$enroll->enroll_id.'/print') }}" class="btn btn-info btn-lg fa fa-eye" target="_blank"></a>
-                                <!-- <button class="show_data btn btn-info btn-lg fa fa-eye" id=<?php //echo $enroll->enroll_id; ?>></button>
-                                <div class="modal fade" id="dataModal" role="dialog">
-                                    <div class="modal-dialog modal-lg">
-                                        <div class="modal-content" id="data">
-                                          หกหฟกหฟกหฟกหฟ
-                                        </div>
-                                    </div>
-                                </div> -->
+                                <a href="{{ url('pdfreport/'.$enroll->enroll_id.'/print') }}" class="btn btn-info btn-lg fa fa-eye" target="_blank"></a>
                             </td>
                             <td>
                                 <a href="{{ url('backend/enrolls/'.$enroll->enroll_id.'/edit') }}" class="btn btn-warning btn-lg fa fa-edit"></a>

@@ -35,15 +35,15 @@
             </div>
             <div>
                 1. สถานที่ปฏิบัติงาน
-                <span style="border-bottom: 1px dotted;">{{ Auth::user()->company }}</span>
+                <span style="border-bottom: 1px dotted;">{{ $val->user_company }}</span>
                 จังหวัด
                 <span style="border-bottom: 1px dotted;">{{ $val->PROVINCE_NAME }}</span>
             </div>
             <div style="text-indent: 88px">
                 ชื่อผู้ประสานงาน
-                <span style="border-bottom: 1px dotted;">{{ Auth::user()->prefix_name }} {{ Auth::user()->name }} {{ Auth::user()->surname }}</span>
+                <span style="border-bottom: 1px dotted;">{{ $val->user_prefix_name }} {{ $val->user_name }} {{ $val->user_surname }}</span>
                 เบอร์โทรศัพท์
-                <span style="border-bottom: 1px dotted;">{{ Auth::user()->telephone }}</span>
+                <span style="border-bottom: 1px dotted;">{{ $val->user_telephone }}</span>
             </div>
             <div>
                 2. ผู้เข้าร่วมประชุม

@@ -80,9 +80,10 @@ class HomeController extends Controller
             ->join('provinces','users.provinces','=','provinces.PROVINCE_ID')
             ->join('batches', 'enroll.batch_id', '=', 'batches.batch_id')
             ->join('courses', 'batches.course_id', '=', 'courses.id')
-            ->select('enroll.enroll_id','courses.name','batches.batch_name',
+            ->select('users.prefix_name as user_prefix_name','users.name as user_name','users.surname as user_surname',
+                'users.company as user_company','provinces.PROVINCE_NAME','users.telephone as user_telephone','enroll.enroll_id','courses.name','batches.batch_name',
                 'courses.cost','courses.discount','courses.minimum','enroll.reg_state','enroll.payment_state','batches.training_date',
-                'batches.place','batches.start_reg','batches.end_reg','batches.batch_type','provinces.PROVINCE_NAME')
+                'batches.place','batches.start_reg','batches.end_reg','batches.batch_type')
             ->where('enroll_id','=',$id)
             ->get();
 
@@ -90,8 +91,8 @@ class HomeController extends Controller
 
         $index = 0;
 
-//        echo json_encode(($enroll));
-//        exit();
+       // echo json_encode(($enroll));
+       // exit();
 
         $pdf = PDF::loadView('pdf',['enroll' => $enroll],['enroll_detail' => $enroll_detail]);
         return $pdf->stream();

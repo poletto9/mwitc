@@ -29,7 +29,8 @@ class EnrollsController extends Controller
             ->join('batches', 'enroll.batch_id', '=', 'batches.batch_id')
             ->join('courses', 'batches.course_id', '=', 'courses.id')
             ->join('enroll_detail','enroll.enroll_id','=','enroll_detail.enroll_id')
-            ->select('enroll.enroll_id','courses.name as course_name','batches.batch_name','users.name','users.company',
+            ->select('enroll.enroll_id','courses.name as course_name','batches.batch_name',
+                'users.name','users.surname','users.company','users.telephone',
                 'courses.cost','enroll.reg_state','enroll.payment_state','batches.training_date',
                 'batches.place','batches.start_reg','batches.end_reg',
                 DB::raw('count(enroll_detail.enroll_id) as enroll_count'))
