@@ -70,6 +70,8 @@
                         <li>เครื่องหมาย <span class="fa fa-close text-danger" style="font-size: 1.5em"></span> หมายถึง ยังไม่ดำเนินการ</li>
                     </ul>
                 </div>
+                <br>
+                {!! $enrolls->links() !!}
             </div>
         </div>
     </div>
